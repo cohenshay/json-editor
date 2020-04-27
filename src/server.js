@@ -6,17 +6,17 @@ var path = require('path')
 var fs = require('fs');
 var bodyParser = require('body-parser')
 var app = express()
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
 app.use(cors());
 app.use(express.static('files'));
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'files')
+        cb(null, path.join(__dirname,"../","files"))
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' +file.originalname )
+        cb(null, file.originalname )
     }
 })
 
