@@ -3,9 +3,8 @@ import './App.css';
 import {JsonEditor as Editor} from 'jsoneditor-react';
 import 'jsoneditor-react/es/editor.min.css';
 import axios from 'axios';
-import config from 'config';
 
-const serverUrl = config.get('server.url');
+const serverUrl = "http://localhost:8000/";
 
 class App extends React.Component {
     constructor(props) {
